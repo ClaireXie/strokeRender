@@ -34,7 +34,7 @@ public:
   float radius;
 
   bool useTexture;
-  bool tapperBrush;
+  bool taperBrush;
   float ufreq;
   float vfreq;
   float ustart;
@@ -62,6 +62,6 @@ public:
 		 vector<Point> * outputCurve);
   void computeLimitCurve();
 
-  float tappering(float radius, int index, int size);
+  float tapering(float radius, int index, int size);
 };
 

@@ -118,12 +118,12 @@ void menuSelect(int value)
     case 8:
       exit(0);
 
-    //////////////////////// Tappering ///////////////////////////
+    //////////////////////// tapering ///////////////////////////
     case 6:
-      curve.tapperBrush = !curve.tapperBrush;
+      curve.taperBrush = !curve.taperBrush;
       glutPostRedisplay();
       break;
-    //////////////////////// Tappering ///////////////////////////
+    //////////////////////// tapering ///////////////////////////
 
     case 7:
       curve.useTexture = !curve.useTexture;
@@ -211,7 +211,7 @@ int main(int argc, char *argv[])
   glutAddMenuEntry("Opaque/Transparent",3);
   glutAddMenuEntry("Thicker",4);
   glutAddMenuEntry("Thinner",5);
-  glutAddMenuEntry("Toggle Tappering",6);
+  glutAddMenuEntry("Toggle Tapering",6);
   glutAddMenuEntry("Toggle Texture",7);
   glutAddMenuEntry("Quit",8);
   glutAttachMenu(GLUT_MIDDLE_BUTTON);

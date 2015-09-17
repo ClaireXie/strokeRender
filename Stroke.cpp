@@ -19,7 +19,7 @@ Stroke::Stroke()
   curveType = CUBIC_BSPLINE;
 
   useTexture = true;
-  tapperBrush = false;
+  taperBrush = false;
 
   numLevels = 3;
 
@@ -163,7 +163,7 @@ void Stroke::drawThickCurve(vector<Point> * curve, float radius,bool cap)
 {
 
   float radius1;
-  cap &= !tapperBrush;
+  cap &= !taperBrush;
 
   if (useTexture)
     glEnable(GL_TEXTURE_2D);
@@ -215,9 +215,9 @@ void Stroke::drawThickCurve(vector<Point> * curve, float radius,bool cap)
   glBegin(GL_TRIANGLE_STRIP);
 
 
-  //////////////////////// Tappering ///////////////////////////
-  radius1 = tapperBrush ? 0 : radius; 
-  //////////////////////// Tappering ///////////////////////////
+  //////////////////////// tapering ///////////////////////////
+  radius1 = taperBrush ? 0 : radius; 
+  //////////////////////// tapering ///////////////////////////
 
   glTexCoord2f(textureU,textureV + vfreq);
   glVertex3f(p0.x + radius1 * dx, p0.y + radius1 * dy,z);
@@ -302,15 +302,15 @@ void Stroke::drawThickCurve(vector<Point> * curve, float radius,bool cap)
       v1 = v3;
 #else
 
-      //////////////////////// Tappering ///////////////////////////
-      radius1 = tapperBrush ? tappering(radius, i, curve->size()) : radius; 
+      //////////////////////// tapering ///////////////////////////
+      radius1 = taperBrush ? tapering(radius, i, curve->size()) : radius; 
 
       glTexCoord2f(textureU,textureV + vfreq);
       glVertex3f(p1.x + radius1 * dx, p1.y + radius1 * dy,z);
 	  
       glTexCoord2f(textureU,textureV - vfreq);
       glVertex3f(p1.x - radius1 * dx, p1.y - radius1 * dy,z);
-      //////////////////////// Tappering ///////////////////////////
+      //////////////////////// tapering ///////////////////////////
 
 #endif
 
@@ -347,9 +347,9 @@ void Stroke::drawThickCurve(vector<Point> * curve, float radius,bool cap)
 
 #else
 
-  //////////////////////// Tappering ///////////////////////////
-  radius1 = tapperBrush ? 0 : radius; 
-  //////////////////////// Tappering ///////////////////////////
+  //////////////////////// tapering ///////////////////////////
+  radius1 = taperBrush ? 0 : radius; 
+  //////////////////////// tapering ///////////////////////////
 
   glTexCoord2f(textureU,textureV + vfreq);
   glVertex3f(p1.x + radius1 * dx, p1.y + radius1 * dy,z);
@@ -559,9 +559,9 @@ void Stroke::computeLimitCurve()
 * index: current index of the control pt
 * size: number of control pts
 * @return
-* radius after tappering 
+* radius after tapering 
 */
-float Stroke::tappering(float radius, int index, int size)
+float Stroke::tapering(float radius, int index, int size)
 {
   float factor = sqrt(radius);
 
